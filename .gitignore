@@ -98,4 +98,4 @@ sw.*
 ogp/*
 
 # npmのバージョン管理を非追跡にする。
-packa-lock.json
+package-lock.json
