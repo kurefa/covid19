@@ -44,29 +44,29 @@
       </nav>
       <v-footer class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
-          <a
+          <!--<a
             href="https://line.me/R/ti/p/%40822sysfc"
             target="_blank"
             rel="noopener"
           >
             <img src="/line.png" alt="LINE" />
-          </a>
+          </a> -->
           <a
-            href="https://twitter.com/tokyo_bousai"
+            href="https://twitter.com/saga_kouhou"
             target="_blank"
             rel="noopener"
           >
             <img src="/twitter.png" alt="Twitter" />
           </a>
           <a
-            href="https://www.facebook.com/tochokoho"
+            href="https://www.facebook.com/sagamitte"
             target="_blank"
             rel="noopener"
           >
             <img src="/facebook.png" alt="Facebook" />
           </a>
           <a
-            href="https://github.com/tokyo-metropolitan-gov/covid19"
+            href="https://github.com/codeforsaga/covid19"
             target="_blank"
             rel="noopener"
           >
@@ -111,55 +111,60 @@ export default {
   computed: {
     items() {
       return [
-        {
+        /* {
           icon: 'mdi-chart-timeline-variant',
-          title: this.$t('都内の最新感染動向'),
+          title: this.$t('県内の最新感染動向'),
           link: this.localePath('/')
-        },
-        {
+        }, */
+        /* {
           icon: 'covid',
           title: this.$t('新型コロナウイルス感染症が心配なときに'),
           link: this.localePath('/flow'),
           divider: true
-        },
-        {
+        }, */
+        /* {
           icon: 'parent',
           title: this.$t('お子様をお持ちの皆様へ'),
           link: this.localePath('/parent')
-        },
+        }, */
         {
           icon: 'mdi-account-multiple',
-          title: this.$t('都民の皆様へ'),
-          link: 'https://www.metro.tokyo.lg.jp/tosei/tosei/news/2019-ncov.html'
+          title: this.$t('新型コロナウイルス感染症について'),
+          link: 'https://www.pref.saga.lg.jp/list04342.html'
         },
         {
+          title: this.$t('新型コロナウイルス感染症に関する相談窓口・基本情報'),
+          link:
+            'https://www.pref.saga.lg.jp/kiji00373208/index.html'
+        },
+        {
+          title: this.$t('佐賀県の新型コロナウイルス感染症の状況'),
+          link:
+            'https://www.pref.saga.lg.jp/kiji00373220/index.html'
+        },
+        {
+          title: this.$t('イベント等情報（県関連）'),
+          link:
+            'https://www.pref.saga.lg.jp/list04345.html'
+        },
+        /* {
           icon: 'mdi-domain',
-          title: this.$t('企業の皆様・はたらく皆様へ'),
+          title: this.$t('[参考:東京都の支援制度]企業の皆様・はたらく皆様へ'),
           link: this.localePath('/worker'),
           divider: true
-        },
-        {
-          title: this.$t('佐賀県新型コロナウイルス感染症対策本部報'),
-          link:
-            'https://www.bousai.metro.tokyo.lg.jp/taisaku/saigai/1007261/index.html'
-        },
-        {
-          title: this.$t('佐賀県主催等 中止又は延期するイベント等'),
-          link:
-            'https://www.seisakukikaku.metro.tokyo.lg.jp/information/event00.html'
-        },
-        {
+        }, */
+        /* {
           title: this.$t('知事からのメッセージ'),
           link:
             'https://www.metro.tokyo.lg.jp/tosei/governor/governor/katsudo/2020/03/03_00.html'
-        },
+        }, */
         {
           title: this.$t('当サイトについて'),
           link: this.localePath('/about')
         },
         {
           title: this.$t('佐賀県公式ホームページ'),
-          link: 'https://www.metro.tokyo.lg.jp/',
+          link: 'https://www.pref.saga.lg.jp/',
           divider: true
         }
       ]

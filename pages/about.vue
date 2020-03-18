@@ -6,7 +6,7 @@
     <TextCard>
       {{
         $t(
-          '当サイトは新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、佐賀県が開設したものです。'
+          '当サイトは新型コロナウイルス感染症 (COVID-19) に関する最新情報を提供するために、Code for Saga が開設したものです。'
         )
       }}<br />
       <br />
@@ -122,7 +122,7 @@
     <TextCard :title="$t('免責事項')">
       {{
         $t(
-          '当サイトに掲載されている情報の正確性については万全を期していますが、佐賀県は利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。'
+          '当サイトに掲載されている情報の正確性については万全を期していますが、Code for Saga は利用者が当サイトの情報を用いて行う一切の行為について責任を負うものではありません。'
         )
       }}<br />
       <br />
@@ -141,10 +141,10 @@
     <TextCard :title="$t('データについて')">
       <i18n
         tag="p"
-        path="本サイトで公表しているデータは、{catalogWebsite}より誰でも自由にダウンロードが可能です。（データは順次追加予定です）"
+        path="本サイトで公表しているデータは、佐賀県ホームページ等から収集したものです。（データは順次追加予定です）"
       >
         <a
-          href="https://portal.data.metro.tokyo.lg.jp/"
+          href="https://odcs.bodik.jp/410004/"
           target="_blank"
           rel="noopener"
           place="catalogWebsite"
@@ -161,7 +161,7 @@
       }}
       <i18n path="詳しくは、{githubRepo}をご確認ください。">
         <a
-          href="https://github.com/tokyo-metropolitan-gov/covid19"
+          href="https://github.com/codeforsaga/covid19"
           target="_blank"
           rel="noopener"
           place="githubRepo"
@@ -170,10 +170,10 @@
         </a>
       </i18n>
     </TextCard>
-    <TextCard :title="$t('お問い合わせ先（都のHPサイトポリシーについて）')">
-      {{ $t('佐賀県生活文化局広報広聴部広報課') }}<br />
+    <TextCard :title="$t('お問い合わせ先')">
+      {{ $t('Code for Saga （特定非営利活動法人NetComさが事務局）) }}<br />
       {{ $t('電話') }}:
-      <a href="tel:03-5388-3085">03-5388-3085</a>
+      <a href="tel:0952-97-9605">0952-97-9605</a>
     </TextCard>
   </div>
 </template>
