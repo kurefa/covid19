@@ -8,21 +8,20 @@
           }}</span>
         </div>
         <div :class="[$style.AdvisoryContentsColsSentense, 'mt-4']">
-          {{ $t('帰国者・接触者 電話相談センター') }}
+          {{ $t('帰国者・接触者相談センター') }}
         </div>
-        <div>
-          <div :class="[$style.AdvisoryBoxContainer, $style.AdvisoryWhiteBox]">
-            <span :class="$style.AdvisoryWhiteBoxSentense">
-              {{ $t('24時間対応') }}
-            </span>
-          </div>
+        <div :class="[$style.AdvisoryContentsColsSentense, 'mt-4']">
+          {{ $t('（各地域の保健福祉事務所）') }}
         </div>
       </div>
 
       <div :class="$style.AdvisoryContents">
         <div class="py-8">
           <div :class="$style.AdvisoryContentsTitle2">
-            {{ $t('平日（日中）') }}
+            {{ $t('平日（8:30～17:15）') }}
+          </div>
+          <div :class="$style.AdvisoryContentsTitle2">
+            {{ $t('※ただし、緊急の場合は、夜間・土日も含め時間外も対応可能です。各保健福祉事務所に電話いただきますと、自動応答メッセージが流れますので、最後までお聞きいただき、その指示に従って対応してください。') }}
           </div>
           <div
             :class="[
@@ -32,41 +31,16 @@
             ]"
           >
             <a
-              href="https://www.fukushihoken.metro.tokyo.lg.jp/iryo/kansen/coronasodan.html"
+              href="https://www.pref.saga.lg.jp/list00583.html"
               target="_blank"
               rel="noopener"
             >
-              <span>{{ $t('各保健所の電話番号は福祉保健局HPへ') }}</span>
+              <span>{{ $t('各保健福祉事務所の電話番号は佐賀県健康・福祉HPへ') }}</span>
               <v-icon size="18">
                 mdi-open-in-new
               </v-icon>
             </a>
           </div>
-        </div>
-      </div>
-
-      <div :class="$style.AdvisoryContents">
-        <div class="pt-8">
-          <div :class="$style.AdvisoryContentsTitle2">
-            {{ $t('平日（夜間）') }}
-          </div>
-          <span>{{ $t('午後5時から翌朝午前9時') }}</span>
-        </div>
-        <div class="mt-1">
-          <span :class="$style.AdvisoryContentsSubTitle">
-            {{ $t('土日祝 終日') }}
-          </span>
-        </div>
-        <div
-          :class="[
-            $style.AdvisoryTelephoneArea,
-            $style.AdvisoryBlockCentering,
-            'mt-1'
-          ]"
-        >
-          <a :class="$style.AdvisoryTelephone" href="tel:0353204592">
-            03-5320-4592
-          </a>
         </div>
       </div>
     </div>

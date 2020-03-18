@@ -3,53 +3,28 @@
     <h4 id="consult" :class="[$style.heading, $style.fzXLarge]">
       {{ $t('新型コロナ受診相談窓口') }}
       <small :class="[$style.break, $style.fzRegular, $style.mt5]">{{
-        $t('帰国者・接触者電話相談センター')
+        $t('帰国者・接触者相談センター（各地域の保健福祉事務所）')
       }}</small>
     </h4>
-    <p :class="[$style.open, $style.fzMedium]">
-      <span>{{ $t('24時間対応') }}</span>
-    </p>
     <dl>
       <div :class="$style.daytime">
         <dt :class="[$style.title, $style.fzMedium]">
-          {{ $t('平日（日中）') }}
+          {{ $t('平日（8時30分から17時15分）') }}
+        </dt>
+        <dt :class="[$style.title, $style.fzMedium]">
+          {{ $t('※ただし、緊急の場合は、夜間・土日も含め時間外も対応可能です。各保健福祉事務所に電話いただきますと、自動応答メッセージが流れますので、最後までお聞きいただき、その指示に従って対応してください。') }}
         </dt>
         <dd :class="$style.link">
           <a
-            href="https://www.fukushihoken.metro.tokyo.lg.jp/iryo/kansen/coronasodan.html"
+            href="https://www.pref.saga.lg.jp/list00583.html"
             target="_blank"
             rel="noopener"
           >
-            {{ $t('各保健所の電話番号は福祉保健局HPへ') }}
+            {{ $t('各保健福祉事務所の電話番号は佐賀県健康・福祉HPへ') }}
             <v-icon size="16">
               mdi-open-in-new
             </v-icon>
           </a>
-        </dd>
-      </div>
-      <div>
-        <dt>
-          <ul :class="[$style.night]">
-            <li>
-              <span :class="[$style.fzMedium, $style.break, $style.mb10]">
-                {{ $t('平日（夜間）') }}
-              </span>
-              {{ $t('午後5時から翌朝午前9時') }}
-            </li>
-            <li>
-              <span :class="$style.fzMedium">
-                {{ $t('土日祝 終日') }}
-              </span>
-            </li>
-          </ul>
-        </dt>
-        <dd>
-          <div :class="[$style.phone, $style.fzNumeric]">
-            <span :class="$style.icon">
-              <PhoneIcon alt="Phone" />
-            </span>
-            <a href="tel:0353204592">03-5320-4592</a>
-          </div>
         </dd>
       </div>
     </dl>

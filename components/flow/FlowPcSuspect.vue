@@ -21,15 +21,15 @@
 
     <div :class="[$style.SubtleBox, $style.Box2, $style.Center]">
       <div :class="$style.LargerText">
-        {{ $t('新型コロナコールセンター') }}
+        {{ $t('一般電話相談窓口（コールセンター）') }}
       </div>
       <div :class="$style.SmallerText">
-        {{ $t('午前9時から午後9時（土日祝含む）') }}
+        {{ $t('8時30分から21時（土日祝含む）') }}
       </div>
 
       <div :class="$style.Tel">
-        <a :class="$style.TelLink" href="tel:0570550571">
-          0570-550571
+        <a :class="$style.TelLink" href="tel:0952257485">
+          0952-25-7485 
         </a>
       </div>
     </div>
