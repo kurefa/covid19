@@ -171,7 +171,7 @@
       </i18n>
     </TextCard>
     <TextCard :title="$t('お問い合わせ先')">
-      {{ $t('Code for Saga （特定非営利活動法人NetComさが事務局）) }}<br />
+      {{ $t('Code for Saga （特定非営利活動法人NetComさが事務局）') }}<br />
       {{ $t('電話') }}:
       <a href="tel:0952-97-9605">0952-97-9605</a>
     </TextCard>
