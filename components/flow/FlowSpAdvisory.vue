@@ -8,13 +8,13 @@
     </h4>
     <dl>
       <div :class="$style.daytime">
-        <dt :class="[$style.title, $style.fzMedium]">
+        <p :class="[$style.title, $style.fzMedium]">
           {{ $t('平日（8時30分から17時15分）') }}
-        </dt>
-        <dt :class="[$style.title, $style.fzMedium]">
+        </p>
+        <p :class="[$style.title, $style.fzMedium]">
           {{ $t('※ただし、緊急の場合は、夜間・土日も含め時間外も対応可能です。各保健福祉事務所に電話いただきますと、自動応答メッセージが流れますので、最後までお聞きいただき、その指示に従って対応してください。') }}
-        </dt>
-        <dd :class="$style.link">
+        </p>
+        <p :class="$style.link">
           <a
             href="https://www.pref.saga.lg.jp/list00583.html"
             target="_blank"
@@ -25,7 +25,7 @@
               mdi-open-in-new
             </v-icon>
           </a>
-        </dd>
+        </p>
       </div>
     </dl>
   </div>
@@ -62,6 +62,7 @@ export default {
 .daytime {
   margin-top: px2vw(20);
   display: flex;
+  flex-direction: column;
   border-top: 1px solid $gray-4;
   border-bottom: 1px solid $gray-4;
   > * {
