@@ -8,8 +8,8 @@
     <whats-new class="mb-4" :items="newsItems" />
     <static-info
       class="mb-4"
-      :url="localePath('/flow')"
-      :text="$t('自分や家族の症状に不安や心配があればまずは電話相談をどうぞ')"
+      :url="localePath('https://www.pref.saga.lg.jp/kiji00373208/index.html')"
+      :text="$t('新型コロナウイルス感染症に関する相談窓口・基本情報')"
       :btn-text="$t('相談の手順を見る')"
     />
     <v-row class="DataBlock">
