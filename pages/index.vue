@@ -8,7 +8,7 @@
     <whats-new class="mb-4" :items="newsItems" />
     <static-info
       class="mb-4"
-      :url="localePath('https://www.pref.saga.lg.jp/kiji00373208/index.html')"
+      :url="'https://www.pref.saga.lg.jp/kiji00373208/index.html'"
       :text="$t('新型コロナウイルス感染症に関する相談窓口・基本情報')"
       :btn-text="$t('相談の手順を見る')"
     />
