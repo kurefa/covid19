@@ -38,9 +38,11 @@
             <v-divider v-show="item.divider" class="SideNavigation-Divider" />
           </v-container>
         </v-list>
+        <!--
         <div class="SideNavigation-LanguageMenu">
           <LanguageSelector />
         </div>
+        //-->
       </nav>
       <v-footer class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
