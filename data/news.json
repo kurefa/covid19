@@ -1,9 +1,19 @@
 {
     "newsItems": [
         {
-            "date": "3\/18\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
+            "date": "3\/20\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373596\/index.html",
+            "text": "第4回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
+        },
+        {
+            "date": "3\/19\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373303\/index.html",
             "text": "佐賀県の新型コロナウイルス感染症の状況（事実と異なる情報や噂にご注意ください）"
+        },
+        {
+            "date": "3\/19\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
+            "text": "新型コロナウイルス感染症の影響を受ける中小企業の方々への金融支援について"
         },
         {
             "date": "3\/18\/2020",
@@ -29,21 +39,6 @@
             "date": "3\/16\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373208\/index.html",
             "text": "新型コロナウイルス感染症に関する相談窓口・基本情報"
-        },
-        {
-            "date": "3\/15\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373482\/index.html",
-            "text": "第3回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
-        },
-        {
-            "date": "3\/14\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373346\/index.html",
-            "text": "【県民の皆さまへ】マスクが品薄状態にあることについて"
-        },
-        {
-            "date": "3\/13\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373362\/index.html",
-            "text": "テレワークに関する相談窓口"
         }
     ]
 }
