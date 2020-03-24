@@ -1,8 +1,13 @@
 {
     "newsItems": [
         {
+            "date": "3\/24\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373634\/index.html",
+            "text": "新型コロナウイルス感染症の発生に伴い納税が困難な方へ（県税の猶予制度に関するお知らせ）"
+        },
+        {
             "date": "3\/23\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373303\/index.html",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
             "text": "佐賀県の新型コロナウイルス感染症の状況（事実と異なる情報や噂にご注意ください）"
         },
         {
@@ -12,33 +17,13 @@
         },
         {
             "date": "3\/19\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373303\/index.html",
             "text": "新型コロナウイルス感染症の影響を受ける中小企業の方々への金融支援について"
         },
         {
             "date": "3\/18\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373531\/index.html",
             "text": "新型コロナウイルス感染症に係る公費負担医療の取扱いについて"
-        },
-        {
-            "date": "3\/16\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373209\/index.html",
-            "text": "臨時休校に関する対応について（新型コロナウイルス関係）"
-        },
-        {
-            "date": "3\/16\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373490\/index.html",
-            "text": "新型コロナウィルス感染症に関連する人権の配慮について"
-        },
-        {
-            "date": "3\/16\/2020",
-            "url": "https:\/\/jsite.mhlw.go.jp\/saga-roudoukyoku\/newpage_00388.html",
-            "text": "新型コロナウイルスの影響による特別労働相談窓口、Ｑ＆Ａ,学校休業等に伴う保護者への支援、雇用調整助成金の特例情報等"
-        },
-        {
-            "date": "3\/16\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373208\/index.html",
-            "text": "新型コロナウイルス感染症に関する相談窓口・基本情報"
         }
     ]
 }
