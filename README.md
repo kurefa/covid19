@@ -2,7 +2,7 @@
 
 ![](https://github.com/tokyo-metropolitan-gov/covid19/workflows/production%20deploy/badge.svg)
 
-[![佐賀県 新型コロナウイルス感染症対策サイト](https://github.com/codeforsaga/covid19/raw/development/static/ogp.png)](https://stopcovid19.metro.tokyo.lg.jp/)
+[![佐賀県 新型コロナウイルス感染症対策サイト](https://user-images.githubusercontent.com/5527253/77529587-3edc4800-6ed3-11ea-8aba-080c0b8b062e.png)](https://stopcovid19.code4saga.org/)
 
 ### 日本語 | [English](./README_EN.md) | [Spanish](./README_ES.md) | [Korean](./README_KO.md) | [Chinese (Taiwan)](./README_ZH_TW.md) | [Chinese (Simplified)](./README_ZH_CN.md) | [Vietnamese](./README_VI.md)
 
