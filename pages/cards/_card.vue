@@ -166,14 +166,14 @@ export default {
     return data
   },
   head() {
-    const url = 'https://stopcovid19.metro.tokyo.lg.jp'
+    const url = 'https://stopcovid19.code4saga.org/'
     const timestamp = new Date().getTime()
     const ogpImage =
       url + '/ogp-' + this.$route.params.card + '.png?t=' + timestamp
     const description =
       this.updatedAt +
       ' 更新 | ' +
-      '当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、佐賀県が開設したものです。'
+      '当サイトは新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために、Code for Saga が開設したものです。'
 
     return {
       title: this.title,
