@@ -1,24 +1,29 @@
 {
     "newsItems": [
         {
+            "date": "3\/25\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373303\/index.html",
+            "text": "新型コロナウイルス感染症の影響を受ける中小企業の方々への金融支援について"
+        },
+        {
+            "date": "3\/25\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
+            "text": "佐賀県の新型コロナウイルス感染症の状況（事実と異なる情報や噂にご注意ください）"
+        },
+        {
+            "date": "3\/25\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373643\/index.html",
+            "text": "飲食を提供される事業者の皆様へ「十分な換気、人の密集の軽減、共用で使う物品の消毒をお願いします」"
+        },
+        {
             "date": "3\/24\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373634\/index.html",
             "text": "新型コロナウイルス感染症の発生に伴い納税が困難な方へ（県税の猶予制度に関するお知らせ）"
         },
         {
-            "date": "3\/23\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
-            "text": "佐賀県の新型コロナウイルス感染症の状況（事実と異なる情報や噂にご注意ください）"
-        },
-        {
             "date": "3\/20\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373596\/index.html",
             "text": "第4回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
-        },
-        {
-            "date": "3\/19\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373303\/index.html",
-            "text": "新型コロナウイルス感染症の影響を受ける中小企業の方々への金融支援について"
         },
         {
             "date": "3\/18\/2020",
