@@ -16,8 +16,8 @@
       <confirmed-cases-details-card />
       <confirmed-cases-number-card />
       <confirmed-cases-attributes-card />
-      <!--
       <tested-number-card />
+      <!--
       <telephone-advisory-reports-number-card />
       <consultation-desk-reports-number-card />
       <metro-card />
