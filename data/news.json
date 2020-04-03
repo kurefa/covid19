@@ -1,7 +1,17 @@
 {
     "newsItems": [
         {
-            "date": "4\/2\/2020",
+            "date": "4\/3\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373820\/index.html",
+            "text": "第10回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
+        },
+        {
+            "date": "4\/3\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373707\/index.html",
+            "text": "第5回佐賀県新型コロナウイルス感染症対策本部会議を開催しました "
+        },
+        {
+            "date": "4\/3\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
             "text": "佐賀県の新型コロナウイルス感染症の状況（事実と異なる情報や噂にご注意ください）"
         },
@@ -11,19 +21,19 @@
             "text": "第9回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
         },
         {
-            "date": "4\/2\/2020",
+            "date": "4\/1\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373794\/index.html",
             "text": "第8回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
-        },
-        {
-            "date": "4\/2\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373782\/index.html",
-            "text": "第7回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
         },
         {
             "date": "4\/1\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373732\/index.html",
             "text": "事業者の皆様へ「新型コロナウイルス感染症に関連する人権への配慮をお願いします」"
+        },
+        {
+            "date": "4\/1\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373782\/index.html",
+            "text": "第7回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
         },
         {
             "date": "3\/31\/2020",
@@ -54,11 +64,6 @@
             "date": "3\/30\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373705\/index.html",
             "text": "新型コロナウイルス感染症の拡大防止のための自動車税種別割に係る取扱いについて"
-        },
-        {
-            "date": "3\/27\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373707\/index.html",
-            "text": "第5回佐賀県新型コロナウイルス感染症対策本部会議を開催しました "
         },
         {
             "date": "3\/27\/2020",
