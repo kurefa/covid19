@@ -1,9 +1,24 @@
 {
     "newsItems": [
         {
-            "date": "4\/5\/2020",
+            "date": "4\/6\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373851\/index.html",
+            "text": "第11回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
+        },
+        {
+            "date": "4\/6\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
             "text": "佐賀県の新型コロナウイルス感染症の状況（事実と異なる情報や噂にご注意ください）"
+        },
+        {
+            "date": "4\/6\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373303\/index.html",
+            "text": "新型コロナウイルス感染症の影響を受ける中小企業の方々への金融支援について"
+        },
+        {
+            "date": "4\/6\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373608\/index.html",
+            "text": "利子補給制度のご案内（新型コロナウイルス感染症資金繰り対策資金（経営改善資金））"
         },
         {
             "date": "4\/5\/2020",
@@ -69,26 +84,6 @@
             "date": "3\/31\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373761\/index.html",
             "text": "お知らせ（新型コロナウイルス感染症の影響による資金繰り等でお困りの事業者の皆様へ）"
-        },
-        {
-            "date": "3\/30\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373722\/index.html",
-            "text": "佐賀へ来られた方々へのお願い"
-        },
-        {
-            "date": "3\/30\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373749\/index.html",
-            "text": "県民の皆さまへのお願い"
-        },
-        {
-            "date": "3\/30\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373705\/index.html",
-            "text": "新型コロナウイルス感染症の拡大防止のための自動車税種別割に係る取扱いについて"
-        },
-        {
-            "date": "3\/27\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373680\/index.html",
-            "text": "特定建築物における新型コロナウイルス感染症対策について"
         }
     ]
 }
