@@ -1,15 +1,31 @@
 {
     "newsItems": [
         {
+            "date": "4\/7\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
+            "text": "佐賀県の新型コロナウイルス感染症の状況（事実と異なる情報や噂にご注意ください）"
+        },
+        {
+            "date": "4\/7\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373362\/index.html",
+            "text": "テレワークに関する相談窓口"
+        },
+        {
+            "date": "4\/7\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373868\/index.html",
+            "text": "新型コロナウイルス感染症に関する記者レクを開催しました（4月7日）"
+        },
+        {
+            "date": "4\/7\/2020",
+            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373871\/index.html",
+            "text": "新型コロナウイルス感染症に関する緊急事態宣言について"
+        },
+        {
             "date": "4\/6\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373851\/index.html",
             "text": "第11回佐賀県新型コロナウイルス感染症対策本部会議を開催しました"
         },
-        {
-            "date": "4\/6\/2020",
-            "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373220\/index.html",
-            "text": "佐賀県の新型コロナウイルス感染症の状況（事実と異なる情報や噂にご注意ください）"
-        },
+
         {
             "date": "4\/6\/2020",
             "url": "https:\/\/www.pref.saga.lg.jp\/kiji00373303\/index.html",
