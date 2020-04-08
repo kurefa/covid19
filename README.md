@@ -1,6 +1,6 @@
 # 佐賀県 新型コロナウイルス感染症対策サイト
 
-![](https://github.com/tokyo-metropolitan-gov/covid19/workflows/production%20deploy/badge.svg)
+![](https://github.com/codeforsaga/covid19/workflows/development%20deploy/badge.svg)
 
 [![佐賀県 新型コロナウイルス感染症対策サイト](https://user-images.githubusercontent.com/5527253/77529587-3edc4800-6ed3-11ea-8aba-080c0b8b062e.png)](https://stopcovid19.code4saga.org/)
 
