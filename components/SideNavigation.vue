@@ -9,10 +9,10 @@
         mdi-menu
       </v-icon>
       <nuxt-link :to="localePath('/')" class="SideNavigation-HeadingLink">
+        <div class="SideNavigation-Logo">
+          <img src="/logo.svg" :alt="$t('佐賀県')" />
+        </div>
         <h1 class="SideNavigation-Heading">
-          <div class="SideNavigation-Logo">
-            <img src="/logo.svg" :alt="$t('佐賀県')" />
-          </div>
           {{ $t('新型コロナウイルス感染症') }}<br />{{ $t('対策サイト') }}
         </h1>
       </nuxt-link>
@@ -97,12 +97,12 @@
 
 <script>
 import ListItem from '@/components/ListItem'
-import LanguageSelector from '@/components/LanguageSelector.vue'
+// import LanguageSelector from '@/components/LanguageSelector.vue'
 
 export default {
   components: {
-    ListItem,
-    LanguageSelector
+    ListItem
+    // LanguageSelector
   },
   props: {
     isNaviOpen: {
@@ -136,18 +136,15 @@ export default {
         },
         {
           title: this.$t('新型コロナウイルス感染症に関する相談窓口・基本情報'),
-          link:
-            'https://www.pref.saga.lg.jp/kiji00373208/index.html'
+          link: 'https://www.pref.saga.lg.jp/kiji00373208/index.html'
         },
         {
           title: this.$t('佐賀県の新型コロナウイルス感染症の状況'),
-          link:
-            'https://www.pref.saga.lg.jp/kiji00373220/index.html'
+          link: 'https://www.pref.saga.lg.jp/kiji00373220/index.html'
         },
         {
           title: this.$t('イベント等情報（県関連）'),
-          link:
-            'https://www.pref.saga.lg.jp/list04345.html'
+          link: 'https://www.pref.saga.lg.jp/list04345.html'
         },
         /* {
           icon: 'mdi-domain',
@@ -217,10 +214,11 @@ export default {
     padding: 2px 20px;
   }
   &-Logo {
-    margin: 5px 16px 15px 0;
+    margin: 5px 16px 0px 0;
     width: 110px;
     @include lessThan($small) {
       margin-top: 0;
+      width: 40px;
     }
   }
   &-Heading {
