@@ -1,6 +1,6 @@
 # 佐賀県 新型コロナウイルス感染症対策サイト
 
-![](https://github.com/tokyo-metropolitan-gov/covid19/workflows/production%20deploy/badge.svg)
+![](https://github.com/codeforsaga/covid19/workflows/development%20deploy/badge.svg)
 
 [![佐賀県 新型コロナウイルス感染症対策サイト](https://user-images.githubusercontent.com/5527253/77529587-3edc4800-6ed3-11ea-8aba-080c0b8b062e.png)](https://stopcovid19.code4saga.org/)
 
@@ -55,10 +55,6 @@ $ yarn install
 $ docker-compose run --rm app yarn install
 ```
 
-### ステージング・本番環境への反映
+### 公開環境への反映
 
-`master` ブランチがアップデートされると、自動的に `production` ブランチにHTML類がbuildされます。そして、本番サイト https://stopcovid19.metro.tokyo.lg.jp/ が更新されます。
-
-`staging` ブランチがアップデートされると、自動的に `gh-pages` ブランチにHTML類がbuildされます。そして、ステージングサイト https://stg-covid19-tokyo.netlify.com/ が更新されます。
-
-`development` ブランチがアップデートされると、自動的に `dev-pages` ブランチにHTML類がbuildされます。そして、開発用サイト https://dev-covid19-tokyo.netlify.com/ が更新されます。
+`development` ブランチがアップデートされると、自動的に `dev-pages` ブランチにHTML類がbuildされます。そして、サーバ側でデプロイ後公開用サイト https://stopcovid19.code4saga.org/ が更新されます。

@@ -6,8 +6,16 @@
       </v-icon>
       {{ $t('最新のお知らせ') }}
     </h3>
+    <v-select
+      v-model="selectedItemLength"
+      item-text="label"
+      item-value="value"
+      :items="itemLengths"
+      label="表示件数"
+      return-object
+    />
     <ul class="WhatsNew-list">
-      <li v-for="(item, i) in items" :key="i" class="WhatsNew-list-item">
+      <li v-for="(item, i) in filterItems" :key="i" class="WhatsNew-list-item">
         <a
           class="WhatsNew-list-item-anchor"
           :href="item.url"
@@ -46,6 +54,27 @@ export default {
     items: {
       type: Array,
       required: true
+    }
+  },
+  data() {
+    return {
+      selectedItemLength: { label: '3件', value: 3 },
+      itemLengths: [
+        { label: '3件', value: 3 },
+        { label: '5件', value: 5 },
+        { label: '10件', value: 10 },
+        { label: '全て', value: -1 }
+      ]
+    }
+  },
+  computed: {
+    filterItems() {
+      // 全て以外の場合は、指定された件数分だけ表示する。
+      if (this.selectedItemLength.value !== -1) {
+        return this.items.slice(0, this.selectedItemLength.value)
+      }
+      // 全ての場合はそのまま返す。
+      return this.items
     }
   },
   methods: {
