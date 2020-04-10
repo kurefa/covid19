@@ -108,6 +108,9 @@ export default class ListItem extends Vue {
     color: transparent !important;
     & .ListItem-TextContainer {
       max-width: calc(100% - 20px);
+      @include lessThan($huge) {
+        max-width: calc(100% - 40px);
+      }
     }
     & .ListItem-Text {
       overflow: visible;
