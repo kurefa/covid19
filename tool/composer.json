@@ -1,8 +1,7 @@
 {
     "require": {
-        "phpoffice/phpspreadsheet": "^1.10",
-        "nesbot/carbon": "^2.30",
-      "ext-json": "*",
-        "tightenco/collect": "^6.17"
+        "spatie/pdf-to-text": "^1.3",
+        "nesbot/carbon": "^2.32",
+        "fabpot/goutte": "^4.0"
     }
 }
