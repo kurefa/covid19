@@ -1,314 +1,186 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
+use Spatie\PdfToText\Pdf;
 use Carbon\Carbon;
-use Tightenco\Collect\Support\Collection;
+use Goutte\Client;
 
-function makeDateArray($begin) : Collection{
-  $begin = Carbon::parse($begin);
-  $dates = [];
-  while(true) {
-
-    if ($begin->diffInDays(Carbon::now()) == 0) {
-      break;
-    } else {
-      $dates[$begin->addDay()->format('Y-m-d').'T08:00:00.000Z'] =0;
-
-    }
-  }
-  return new Collection($dates);
-}
-function formatDate(string $date) :string
+function getAttachmentFileInfo($target_url) : array
 {
-    if (preg_match('#(\d+/\d+/\d+)/ (\d+:\d+)#', $date, $matches)) {
-      $carbon = Carbon::parse($matches[1].' '.$matches[2]);
-      return $carbon->format('Y/m/d H:i');
-    } else {
-      throw new Exception('Can not parse date:'.$date);
-    }
+    $client = new Client();
+    $crawler = $client->request('GET', $target_url);
+    $values = $crawler->filter('#danraku1 a')->reduce(function($element) {
+        if (! preg_match('/日別検査状況/u', $element->text(), $matches)) return false;
+    })->each(function($element) {
+        preg_match('/日別検査状況（(.+)(\d{1,2})年(\d{1,2})月(\d{1,2})日(\d{1,2})時(\d{1,2})分.+）/u', $element->text(), $matches);
+
+        // 適当な和暦パーサーがないので固定
+        if ($matches[1] == '令和') $matches[2] += 2018;
+        $page_date = Carbon::parse($matches[2] . '-' . $matches[3] . '-' . $matches[4] . ' ' . $matches[5] . ':' . $matches[6]);
+
+        return [
+            'date' => $page_date,
+            'url' => $element->link()->getUri(),
+        ];
+    });
+
+    return $values[0];
 }
 
-function xlsxToArray(string $path, string $sheet_name, string $range, $header_range = null)
+function getPatients($target_url) : array
 {
-  $reader = new PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-  $spreadsheet = $reader->load($path);
-  $sheet = $spreadsheet->getSheetByName($sheet_name);
-  $data =  new Collection($sheet->rangeToArray($range));
-  $data = $data->map(function ($row) {
-    return new Collection($row);
-  });
-  if ($header_range !== null) {
-      $headers = xlsxToArray($path, $sheet_name, $header_range)[0];
-      // TODO check same columns length
-      return $data->map(function ($row) use($headers){
-          return $row->mapWithKeys(function ($cell, $idx) use($headers){
+    $client = new Client();
+    $crawler = $client->request('GET', $target_url);
+    $values = $crawler->filter('#danraku1 div a')->reduce(function($element) {
+        if (! preg_match('/詳細はこちら/u', $element->text(), $matches)) return false;
+        if (! preg_match('/例目：/u', $element->parents()->text(), $matches)) return false;
+    })->each(function($element) {
+        preg_match('/(\d+)例目：(.+代)\s*(男性|女性)\s*(.+)在住/u', $element->parents()->text(), $matches);
+        return [
+            'no' => $matches[1],
+            'age' => $matches[2],
+            'sex' => $matches[3],
+            'living' => $matches[4],
+        ];
+    });
 
-            return [
-              $headers[$idx] => $cell
-            ];
-        });
-      });
-  }
-
-  return $data;
+    return $values;
 }
 
-
-function readContacts() : array
+function downloadFile($target_url, $save_file)
 {
-
-  $data = xlsxToArray(__DIR__.'/downloads/コールセンター相談件数-RAW.xlsx', 'Sheet1', 'A2:E100', 'A1:E1');
-  return [
-    'date' => xlsxToArray(__DIR__.'/downloads/コールセンター相談件数-RAW.xlsx', 'Sheet1', 'H1')[0][0],
-    'data' => $data->filter(function ($row) {
-        return $row['曜日'] && $row['17-21時'];
-      })->map(function ($row) {
-      $date = '2020-'.str_replace(['月', '日'], ['-', ''], $row['日付']);
-      $carbon = Carbon::parse($date);
-      $row['日付'] = $carbon->format('Y-m-d').'T08:00:00.000Z';
-      $row['date'] = $carbon->format('Y-m-d');
-      $row['w'] = $carbon->format('w');
-      $row['short_date'] = $carbon->format('m/d');
-      $row['小計'] = array_sum([
-        $row['9-13時'] ?? 0,
-        $row['13-17時'] ?? 0,
-        $row['17-21時'] ?? 0,
-      ]);
-      return $row;
-    })
-  ];
-}
-
-/*
- * 取り急ぎreadContactsからコピペ
- * 過渡期がすぎたら共通処理にしたい。→マクロ入ってる
- */
-function readQuerents() : array
-{
-  $data = xlsxToArray(__DIR__.'/downloads/帰国者・接触者センター相談件数-RAW.xlsx', 'RAW', 'A2:D100', 'A1:D1');
-
-  return [
-    'date' => xlsxToArray(__DIR__.'/downloads/帰国者・接触者センター相談件数-RAW.xlsx', 'RAW', 'H1')[0][0],
-    'data' => $data->filter(function ($row) {
-
-      return $row['曜日'] && $row['17-翌9時'];
-    })->map(function ($row) {
-      $date = '2020-'.str_replace(['月', '日'], ['-', ''], $row['日付']);
-      $carbon = Carbon::parse($date);
-      $row['日付'] = $carbon->format('Y-m-d').'T08:00:00.000Z';
-      $row['date'] = $carbon->format('Y-m-d');
-      $row['w'] = $carbon->format('w');
-      $row['short_date'] = $carbon->format('m/d');
-      $row['小計'] = array_sum([
-        $row['9-17時'] ?? 0,
-        $row['17-翌9時'] ?? 0,
-      ]);
-      return $row;
-    })->values()
-  ];
-}
-
-
-function readPatientsV2() : array
-{
-  $data = xlsxToArray(__DIR__.'/downloads/佐賀県患者発生発表数-RAW.xlsx', 'RAW', 'A2:J100', 'A1:J1');
-  $base_data = $data->filter(function ($row) {
-    return $row['リリース日'];
-  })->map(function ($row) {
-    $date = '2020-'.str_replace(['月', '日'], ['-', ''], $row['リリース日']);
-    $carbon = Carbon::parse($date);
-    $row['リリース日'] = $carbon->format('Y-m-d').'T08:00:00.000Z';
-    $row['date'] = $carbon->format('Y-m-d');
-    $row['w'] = $carbon->format('w');
-    $row['short_date'] = $carbon->format('m/d');
-    return $row;
-  });
-
-  return [
-    'date' => xlsxToArray(__DIR__.'/downloads/佐賀県患者発生発表数-RAW.xlsx', 'RAW', 'M1')[0][0],
-    'data' => [
-      '感染者数' => makeDateArray('2020-01-24')->merge($base_data->groupBy('リリース日')->map(function ($rows) {
-        return $rows->count();
-      })),
-      '退院者数' => makeDateArray('2020-01-24')->merge($base_data->filter(function ($row) {
-        return $row['退院'] === '〇' && !preg_match('/死亡$/', trim($row['備考']));
-      })->groupBy('リリース日')->map(function ($rows) {
-        return $rows->count();
-      })),
-      '死亡者数' => makeDateArray('2020-01-24')->merge($base_data->filter(function ($row) {
-        return preg_match('/死亡$/', trim($row['備考']));
-      })->groupBy('リリース日')->map(function ($rows) {
-        return $rows->count();
-      })),
-      '軽症' => makeDateArray('2020-01-24')->merge($base_data->filter(function ($row) {
-        return $row['退院'] !== '〇' && trim($row['備考']) == '';
-      })->groupBy('リリース日')->map(function ($rows) {
-        return $rows->count();
-      })),
-      '中等症' => makeDateArray('2020-01-24')->merge($base_data->filter(function ($row) {
-        return $row['退院'] !== '〇' && preg_match('/中等症$/', trim($row['備考']));
-      })->groupBy('リリース日')->map(function ($rows) {
-        return $rows->count();
-      })),
-      '重症' => makeDateArray('2020-01-24')->merge($base_data->filter(function ($row) {
-        return $row['退院'] !== '〇' && preg_match('/重症$/', trim($row['備考']));
-      })->groupBy('リリース日')->map(function ($rows) {
-        return $rows->count();
-      }))
-
-    ]
-  ];
-}
-
-function readPatients() : array
-{
-    $data = xlsxToArray(__DIR__.'/downloads/佐賀県患者発生発表数-RAW.xlsx', 'RAW', 'A2:J100', 'A1:J1');
-
-    return [
-      'date' => xlsxToArray(__DIR__.'/downloads/佐賀県患者発生発表数-RAW.xlsx', 'RAW', 'M1')[0][0],
-      'data' => $data->filter(function ($row) {
-        return $row['リリース日'];
-      })->map(function ($row) {
-        $date = '2020-'.str_replace(['月', '日'], ['-', ''], $row['リリース日']);
-        $carbon = Carbon::parse($date);
-        $row['リリース日'] = $carbon->format('Y-m-d').'T08:00:00.000Z';
-        $row['date'] = $carbon->format('Y-m-d');
-        $row['w'] = $carbon->format('w');
-        $row['short_date'] = $carbon->format('m/d');
-        return $row;
-      })
-    ];
-}
-function createSummary(array $patients) {
-  $dates = makeDateArray('2020-01-23');
-
-  return [
-    'date' => $patients['date'],
-    'data' => $dates->map(function ($val, $key) {
-      return [
-        '日付' => $key,
-        '小計' => $val
-      ];
-    })->merge($patients['data']->groupBy('リリース日')->map(function ($group, $key) {
-      return [
-        '日付' => $key,
-        '小計' => $group->count()
-      ];
-    }))->values()
-  ];
-
-
-}
-
-function discharges(array $patients) : array {
-
-  return [
-    'date' => $patients['date'],
-    'data' => $patients['data']->filter(function ($row) {
-      return $row['退院'] === '〇';
-    })->values()
-  ];
-}
-
-function readInspections() : array{
-  $data = xlsxToArray(__DIR__.'/downloads/検査実施日別状況.xlsx', '入力シート', 'A2:J100', 'A1:J1');
-  $data = $data->filter(function ($row) {
-    return $row['疑い例検査'] !== null;
-  });
-  return [
-    'date' => '2020/3/5/ 00:00', //TODO 現在のエクセルに更新日付がないので変更する必要あり
-    'data' => $data
-  ];
-}
-
-function readInspectionsSummary(array $inspections) : array
-{
-  return [
-    'date' => $inspections['date'],
-    'data' => [
-      '都内' => $inspections['data']->map(function ($row) {
-        return str_replace(' ', '', $row['（小計①）']);
-      }),
-      'その他' => $inspections['data']->map(function ($row) {
-        return str_replace(' ', '', $row['（小計②）']);
-      }),
-    ],
-    'labels' =>$inspections['data']->map(function ($row) {
-        return Carbon::parse($row['判明日'])->format('n/j');
-    })
-  ];
-}
-
-
-$contacts = readContacts();
-$querents = readQuerents();
-
-$patients = readPatients();
-$patients_summary = createSummary($patients);
-$better_patients_summary = readPatientsV2();
-
-$discharges = discharges($patients);
-$discharges_summary = createSummary($discharges);
-
-$inspections =readInspections();
-$inspections_summary =readInspectionsSummary($inspections);
-
-$data = compact([
-  'contacts',
-  'querents',
-  'patients',
-  'patients_summary',
-  'discharges_summary',
-  'discharges',
-  'inspections',
-  'inspections_summary',
-  'better_patients_summary'
-]);
-$lastUpdate = '';
-$lastTime = 0;
-foreach ($data as $key => &$arr) {
-    $arr['date'] = formatDate($arr['date']);
-    $timestamp = Carbon::parse()->format('YmdHis');
-    if ($lastTime <= $timestamp) {
-      $lastTime = $timestamp;
-      $lastUpdate = Carbon::parse($arr['date'])->addDay()->format('Y/m/d 8:00');
+    if (($data = file_get_contents($target_url)) !== false) {
+        if (file_put_contents($save_file, $data) !== false) {
+            echo "pdf file download success. --> $save_file\n";
+            return;
+        } else {
+            throw Exception("file not found:$target_url");
+        }
     }
 }
-$data['lastUpdate'] = $lastUpdate;
 
-$data['main_summary'] = [
-  'attr' => '検査実施人数',
-  'value' => xlsxToArray(__DIR__.'/downloads/検査実施サマリ.xlsx', '検査実施サマリ', 'A2')[0][0],
-  'children' => [
-    [
-      'attr' => '陽性患者数',
-      'value' => $better_patients_summary['data']['感染者数']->sum(),
-      'children' => [
-        [
-          'attr' => '入院中',
-          'value' => $better_patients_summary['data']['感染者数']->sum() - $better_patients_summary['data']['退院者数']->sum() - $better_patients_summary['data']['死亡者数']->sum(),
-          'children' => [
-            [
-              'attr' => '軽症・中等症',
-              'value' => $better_patients_summary['data']['軽症']->sum() + $better_patients_summary['data']['中等症']->sum()
-            ],
-            [
-              'attr' => '重症',
-              'value' => $better_patients_summary['data']['重症']->sum()
-            ]
-          ]
-        ],
-        [
-          'attr' => '退院',
-          'value' => $better_patients_summary['data']['退院者数']->sum()
-        ],
-        [
-          'attr' => '死亡',
-          'value' => $better_patients_summary['data']['死亡者数']->sum()
-        ]
+function extractWordFromPdf($target_file, $publish_date) : array
+{
+    // 既存data.json読み込み
+    $data = file_get_contents(dirname(__FILE__) . '/../data/data.json');
+    $json = json_decode($data, true);
 
-      ]
-    ]
-  ]
-];
+    // PDF読み込み
+    $text = (new Pdf())
+    ->setPdf($target_file)
+    ->setOptions(['layout', 'eol unix'])
+    ->text();
 
-file_put_contents(__DIR__.'/../data/data.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK));
+    $lines = explode("\n", $text);
+
+    $date_json_format = $publish_date->format('Y/m/d H:i');
+
+    $json['inspections_summary']['data'] = [];
+    $json['inspections_summary']['labels'] = [];
+
+    foreach ($lines as $line) {
+        // PDFの3/11に含まれる0x0cを除去
+        $line = trim($line, "\x0c");
+
+        $fields = preg_split("/\s+/", $line);
+        if (!is_numeric($fields[0])) continue;
+
+        // 年情報がないので、2020年固定で処理する
+        $date = '2020-' . sprintf('%02d-%02d', $fields[0], $fields[1]) . 'T08:00:00.000Z';
+        $pdf_date = Carbon::parse($date);
+
+        foreach (['patients_summary', 'discharges_summary'] as $section) {
+            $is_change = false;
+            $last_file_date = null;
+
+            $json[$section]['date'] = $date_json_format;
+            foreach ($json[$section]['data'] as &$data) {
+                // 退院者数は取得できないので既存データを維持
+                $count = ($section == 'patients_summary') ? $fields[4] : $data['小計'];
+
+                $data_date = Carbon::parse($data['日付']);
+                $last_file_date = $data_date;
+
+                // 既存データ置換
+                if ($pdf_date->isSameDay($data_date)) {
+                    $data['小計'] = (int)$count;
+                    $is_change = true;
+                }
+            }
+
+            // 追加
+            if ($is_change == false and is_null($last_file_date) == false and $last_file_date->lte($pdf_date)) {
+                // 退院者数は取得できないので0をセット
+                $count = ($section == 'patients_summary') ? $fields[4] : 0;
+
+                $json[$section]['data'][] = [
+                    '日付' => $pdf_date->format('Y-m-d') . 'T08:00:00.000Z',
+                    '小計' => (int)$count,
+                ];
+            }
+        }
+
+        $json['inspections_summary']['data']['佐賀県内'][] = (int)$fields[3];
+        $json['inspections_summary']['data']['その他'][] = 0;
+        $json['inspections_summary']['labels'][] = $pdf_date->format('n/j');
+    }
+
+    $json['contacts']['date'] = $date_json_format;
+    $json['querents']['date'] = $date_json_format;
+    $json['patients']['date'] = $date_json_format;
+    $json['inspections_summary']['date'] = $date_json_format;
+    $json['inspections']['date'] = $date_json_format;
+    $json['lastUpdate'] = $date_json_format;
+
+    return $json;
+}
+
+$target_url = 'https://www.pref.saga.lg.jp/kiji00373220/index.html';
+$save_file = dirname(__FILE__) . '/downloads/download_file.pdf';
+
+$attachment_file = getAttachmentFileInfo($target_url);
+downloadFile($attachment_file['url'], $save_file);
+
+$json = extractWordFromPdf($save_file, $attachment_file['date']);
+$patients = getPatients($target_url);
+
+// 患者情報に日付がないので、件数で比較
+if (count($patients) > count($json['patients']['data'])) {
+    for ($i = count($json['patients']['data']); $i < count($patients); $i++) {
+        $json['patients']['data'][] = [
+            'リリース日' => Carbon::now()->format('Y-m-d') . 'T08:00:00.000Z', // 日付情報がないので今日をセット
+            '居住地' => '佐賀県' . $patients[$i]['living'],
+            '年代' => $patients[$i]['age'],
+            '性別' => $patients[$i]['sex'],
+            '退院' => null, // 退院情報がないのでnullをセット
+            'date' => Carbon::now()->format('Y-m-d'),
+        ];
+    }
+}
+
+// 集計値更新
+// 検査数
+$sum_inspections_count = 0;
+foreach ($json['inspections_summary']['data']['佐賀県内'] as $data) {
+    $sum_inspections_count += $data;
+}
+$json['main_summary']['value'] = $sum_inspections_count;
+
+// 陽性患者数
+$sum_patients_count = 0;
+foreach ($json['patients_summary']['data'] as $data) {
+    $sum_patients_count += $data['小計'];
+}
+$json['main_summary']['children'][0]['value'] = $sum_patients_count;
+
+// 退院者数
+$sum_discharges_count = 0;
+foreach ($json['discharges_summary']['data'] as $data) {
+    $sum_discharges_count += $data['小計'];
+}
+$json['main_summary']['children'][0]['children'][1]['value'] = $sum_discharges_count;
+$json['main_summary']['children'][0]['children'][0]['value'] = $sum_patients_count - $sum_discharges_count;
+
+$wh = fopen(dirname(__FILE__) . '/data.json', 'w');
+fwrite($wh, json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+fclose($wh);
+echo "generated ./data.json\n";
